@@ -190,7 +190,10 @@ function renderVacantes(lista) {
       <p class="vacante-desc">${v.descripcion}</p>
       <div class="vacante-footer">
         <span class="vacante-salario">${v.salario}</span>
-        <button class="btn-postular" onclick="postular(${v.id})">Postularme</button>
+        <div style="display:flex;gap:8px;">
+          <button class="btn-chat" onclick="abrirChat('${v.empresa}', ${v.id}, '${v.titulo}')">💬 Chat</button>
+          <button class="btn-postular" onclick="postular(${v.id})">Postularme</button>
+        </div>
       </div>
     </div>
   `).join("");
