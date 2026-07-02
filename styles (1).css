@@ -105,8 +105,8 @@ nav {
 .hero-search input {
   flex: 1;
   border: none;
-  padding: 0 1.25rem;
-  font-size: 0.95rem;
+  padding: 0 2.25rem;
+  font-size: 1.25rem;
   color: var(--texto);
   outline: none;
   font-family: 'Inter', sans-serif;
