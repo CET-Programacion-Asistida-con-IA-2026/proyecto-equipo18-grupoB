@@ -1,35 +1,37 @@
-## Grupo A/B - Equipo {numero}
-_Curso de Programación Asistida con IA - Chicas en Tecnología_ 🚀
+# 💼 EmpleoYA
 
-```⚠️ Dejar la opción correcta entre Grupo A (Grupo de 17 a 19hs) y Grupo B (Grupo de 19 a 21hs) y agregar el número de equipo ⚠️```
+## 📋 Definición de la problemática
 
-En este repositorio, se presenta el sitio web realizado durante el curso de programación frontend de CET.
+Muchas personas sin experiencia laboral tienen dificultades para 
+encontrar su primer empleo. Queremos enfocarnos en crear una experiencia
+facil, accesible y enfocandonos en la cercania geografica del usuario para 
+ayudar a pasar la barrera adicional a quienes más necesitan insertarse en el 
+mercado laboral.
 
-### 📄 Entregas
-**Entrega #1**: planificación de la solución y primeros resultados que obtengamos con la IA:
+## 🌍 Relación con los ODS
 
-📝 Edición del Archivo README incluyendo:
-- Definición de la problemática que eligieron abordar
-- Relación con los *Objetivos de Desarrollo Sostenible (ODS)*[^1]
-- Explicación de la solución tecnológica que están desarrollando
-> [!TIP]
-> Aprovechen los [formatos del README](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) para escribir diferentes secciones
+Este proyecto se relaciona con el **ODS 8 - Trabajo Decente y 
+Crecimiento Económico**, ya que busca facilitar el acceso al 
+empleo para personas sin experiencia, promoviendo la inclusión 
+laboral y reduciendo las barreras de entrada al mundo del trabajo.
 
-🎨 Moodboard
+## 🚀 Solución tecnológica
 
-🧩 Archivos generados con asistencia de IA: ```index.html```, ```style.css```, ```script.js```
+Una aplicación web simple e intuitiva donde el usuario pueda:
 
+- Ver las vacantes laborales disponibles más cercanas a su 
+  ubicación en un **mapa interactivo**
+- Posibilidad de crear un CV desde cero  
+- Filtrar oportunidades accesibles para personas **sin experiencia**
+- Postularse o, en caso de ser comercio, poder contactar con los postulantes
+- de forma rapida y directa
 
-**Entrega #2 (Final)**: se esperan modificaciones en el código respecto a la entrega anterior, que pueden incluir nuevos archivos o extensión de los existentes (debe haber al menos un archivo de cada lenguaje visto - HTML, CSS y Javascript)
+## 🎨 Moodboard
 
-💡 Es una buena idea llevar un registro de lo que cambiamos. Por ejemplo
-```
-- Agregamos Bootstrap para el carrousel de imágenes...
-- Modificamos el texto de la sección de bienvenida...
-- Transformamos los textos sobre redes sociales en links...
-```
+<img width="1600" height="1131" alt="MOODBOARD 18B" src="https://github.com/user-attachments/assets/32ef9d21-6535-4720-8ad0-7b5b638c41cf" />
 
-Ahora si, ¡A programar! 🚀
+## 💻 Archivos
 
-
-[^1]: Los Objetivos de Desarrollo Sostenible u Objetivos Globales, también conocidos como Agenda 2030, son 17 objetivos globales interconectados diseñados para ser un «plan para lograr un futuro mejor y más sostenible para todos». Más información en https://www.un.org/sustainabledevelopment/es/objetivos-de-desarrollo-sostenible/
+- `index.html` — Estructura de la aplicación
+- `styles.css` — Estilos y diseño visual
+- `app.js` — Lógica e interactividad del mapa
