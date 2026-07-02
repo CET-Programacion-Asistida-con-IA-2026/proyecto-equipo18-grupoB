@@ -2,7 +2,7 @@
    EmpleoYA — Lógica principal
    ============================================= */
 
-// ===================== DATOS Necesarios =====================
+// ===================== DATOS =====================
 
 const vacantesBase = [
   {
@@ -190,10 +190,7 @@ function renderVacantes(lista) {
       <p class="vacante-desc">${v.descripcion}</p>
       <div class="vacante-footer">
         <span class="vacante-salario">${v.salario}</span>
-        <div style="display:flex;gap:8px;">
-          <button class="btn-chat" onclick="abrirChat('${v.empresa}', ${v.id}, '${v.titulo}')">💬 Chat</button>
-          <button class="btn-postular" onclick="postular(${v.id})">Postularme</button>
-        </div>
+        <button class="btn-postular" onclick="postular(${v.id})">Postularme</button>
       </div>
     </div>
   `).join("");
@@ -346,19 +343,6 @@ function postular(id) {
 
 // ===================== EMPRESAS =====================
 
-function renderEmpresas() {
-  document.getElementById("empresas-lista").innerHTML = empresas.map(e => `
-    <div class="empresa-card">
-      <div class="empresa-logo" style="background:${e.color}22; color:${e.color};">${e.iniciales}</div>
-      <div class="empresa-info">
-        <h4>${e.nombre}</h4>
-        <p>${e.sector}</p>
-        <span class="empresa-vacantes">${e.vacantesNum} vacantes</span>
-      </div>
-    </div>
-  `).join("");
-}
-
 // ===================== CV =====================
 
 function procesarCV(input) {
@@ -417,28 +401,30 @@ function renderTips() {
 
 document.addEventListener("DOMContentLoaded", () => {
   const uploadArea = document.getElementById("upload-area");
-
-  uploadArea.addEventListener("dragover", e => {
-    e.preventDefault();
-    uploadArea.classList.add("drag-over");
-  });
-  uploadArea.addEventListener("dragleave", () => uploadArea.classList.remove("drag-over"));
-  uploadArea.addEventListener("drop", e => {
-    e.preventDefault();
-    uploadArea.classList.remove("drag-over");
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      const inp = document.getElementById("cv-file");
-      const dt = new DataTransfer();
-      dt.items.add(file);
-      inp.files = dt.files;
-      procesarCV(inp);
-    }
-  });
+  if (uploadArea) {
+    uploadArea.addEventListener("dragover", e => {
+      e.preventDefault();
+      uploadArea.classList.add("drag-over");
+    });
+    uploadArea.addEventListener("dragleave", () => uploadArea.classList.remove("drag-over"));
+    uploadArea.addEventListener("drop", e => {
+      e.preventDefault();
+      uploadArea.classList.remove("drag-over");
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        const inp = document.getElementById("cv-file");
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        inp.files = dt.files;
+        procesarCV(inp);
+      }
+    });
+  }
 
   // Init
   renderVacantes(vacantes);
   renderEmpresas();
+  actualizarUIAuth();
 });
 
 // ===================== NOTIFICACIÓN =====================
@@ -868,7 +854,6 @@ function irAEmpresa(lat, lng, nombre) {
   mapaLeaflet.flyTo([lat, lng], 16, { duration: 1 });
 }
 
-// Override renderEmpresas para el estado inicial (sin distancias)
 function renderEmpresas() {
   const lista = document.getElementById('empresas-lista');
   if (!lista) return;
@@ -1038,6 +1023,12 @@ function actualizarUIAuth() {
     navUsuario.style.display = 'none';
     if (bloquePublicar) bloquePublicar.style.display = 'none';
   }
+
+  // Cargar foto de perfil en el avatar si existe
+  if (sesion) {
+    const perfil = getPerfilData(sesion.email);
+    if (perfil.foto) actualizarAvatarNav(sesion, perfil.foto);
+  }
 }
 
 // Enter en campos de auth
@@ -1049,9 +1040,6 @@ document.addEventListener('keydown', e => {
   if (panelLogin && panelLogin.style.display !== 'none') iniciarSesion();
   else registrarse();
 });
-
-// Inicializar al cargar
-document.addEventListener('DOMContentLoaded', actualizarUIAuth);
 
 // ===================== PERFIL — STORAGE =====================
 
@@ -1426,15 +1414,4 @@ function recopilarListaPerfil(listaId) {
     entrada.querySelectorAll('[data-campo]').forEach(c => { obj[c.dataset.campo] = c.value || ''; });
     return obj;
   }).filter(obj => Object.values(obj).some(v => v.trim()));
-}
-
-// Actualizar avatar con foto al cargar sesión
-const _actualizarUIAuthOriginal = actualizarUIAuth;
-function actualizarUIAuth() {
-  _actualizarUIAuthOriginal();
-  const sesion = getSesion();
-  if (sesion) {
-    const perfil = getPerfilData(sesion.email);
-    if (perfil.foto) actualizarAvatarNav(sesion, perfil.foto);
-  }
 }
