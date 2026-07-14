@@ -190,7 +190,6 @@ function renderVacantes(lista) {
       <p class="vacante-desc">${v.descripcion}</p>
       <div class="vacante-footer">
         <span class="vacante-salario">${v.salario}</span>
-        <button class="btn-chat" data-vacante-id="${v.id}" data-titulo="${v.titulo}" data-empresa="${v.empresa}">💬 Consultar</button>
         <button class="btn-postular" onclick="postular(${v.id})">Postularme</button>
       </div>
     </div>
@@ -1181,7 +1180,6 @@ function renderPostulaciones(email) {
         p.estado === 'enviada'  ? '📤 Enviada'   :
         p.estado === 'revision' ? '🔍 En revisión' : '✅ Aceptada'
       }</span>
-      <button class="btn-chat" data-vacante-id="${p.vacanteId}" data-titulo="${p.titulo}" data-empresa="${p.empresa}">💬 Chat</button>
     </div>`).join('');
 }
 
@@ -1281,7 +1279,6 @@ function renderPostulantesEmpresa(sesion) {
         <div style="font-size:0.78rem;font-weight:600;color:var(--azul)">${p.tituloVacante}</div>
         <div style="font-size:0.73rem;color:var(--texto-sec);margin-top:2px;">${p.fecha}</div>
       </div>
-      <button class="btn-chat" data-vacante-id="${p.vacanteId}" data-titulo="${p.tituloVacante}" data-empresa="${p.empresaNombre}" data-email-candidato="${p.emailCandidato}">💬 Chat</button>
     </div>`;
   }).join('');
 }
